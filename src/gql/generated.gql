@@ -1,0 +1,51 @@
+fragment movementFrag on Movement {
+  __typename
+  _id
+  createdBy
+  date
+  name
+  value
+}
+
+mutation createMovement($record: CreateOneMovementInput!) {
+  createMovement(record: $record) {
+    __typename
+    record {
+      ...movementFrag
+    }
+  }
+}
+
+query movementsList(
+  $filter: FilterFindManyMovementInput
+  $limit: Int
+  $skip: Int
+) {
+  movements(filter: $filter, limit: $limit, skip: $skip) {
+    ...movementFrag
+  }
+}
+
+query movemenById($id: MongoID!) {
+  movement(_id: $id) {
+    ...movementFrag
+  }
+}
+
+mutation deleteMovement($id: MongoID!) {
+  deleteMovement(_id: $id) {
+    __typename
+    record {
+      ...movementFrag
+    }
+  }
+}
+
+mutation updateMovement($id: MongoID!, $record: UpdateByIdMovementInput!) {
+  updateMovement(_id: $id, record: $record) {
+    __typename
+    record {
+      ...movementFrag
+    }
+  }
+}
