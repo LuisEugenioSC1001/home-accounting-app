@@ -1,10 +1,10 @@
+import Router from "config/routes";
 import { ToastContainer } from "react-toastify";
-import "./App.css";
-
 function App() {
   return (
     <>
       <ToastContainer />
+      <Router />
     </>
   );
 }
